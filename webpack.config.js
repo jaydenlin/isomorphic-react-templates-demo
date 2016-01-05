@@ -1,9 +1,8 @@
 "use strict";
 var path = require("path"),
     webpack = require("webpack"),
+    watchFilePlugin = require("watchfile-webpack-plugin"),
     hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
-
-
 module.exports = {
     cache: true,
     entry: {
@@ -26,7 +25,8 @@ module.exports = {
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new watchFilePlugin({watchFolder: "./src/components/", watchExtension: "rt"})
     ],
     externals: {
 
